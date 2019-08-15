@@ -1,14 +1,16 @@
 import React, { Fragment } from "react";
 import "./App.css";
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 import { AppStateProvider, useAppState } from "./sweatpants";
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const initialState = {
   todos: [
-    { id: 1, text: "Hacer la tarea temprano" },
-    { id: 2, text: "Comprar pan" }
+    { id: 1, text: "Hacer la tarea temprano", completed: false },
+    { id: 2, text: "Comprar pan", completed: false }
   ],
   visibility: "ALL"
 };
@@ -104,13 +106,16 @@ const TodoFilters = () => {
 
 const filterTodos = (todos, visibility) => {
   switch (visibility) {
-    case "ACTIVE":
+    case "ACTIVE": {
       return todos.filter(todo => !todo.completed);
-    case "COMPLETED":
+    }
+    case "COMPLETED": {
       return todos.filter(todo => todo.completed);
+    }
     case "ALL":
-    default:
+    default: {
       return todos;
+    }
   }
 };
 
@@ -120,8 +125,7 @@ const TodoApp = () => {
 
   return (
     <Fragment>
-      {todos.length ? <TodoList todos={todos} /> : <h3>Add some todo's</h3>}
-
+      {todos.length ? <TodoList todos={todos} /> : <h3>Add some todo</h3>}
       <TodoFilters />
     </Fragment>
   );
